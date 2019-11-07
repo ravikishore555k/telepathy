@@ -8,16 +8,16 @@ resource "aws_vpc" "telepathy-vpc" {
   cidr_block       = "${var.vpc-cidr}"
   instance_tenancy = "${var.tenancy}"
   tags = {
-    name = "telepathy-vpc"
+    Name = "telepathy-vpc"
   }
 }
 
 resource "aws_subnet" "telepathy-subnet" {
   vpc_id            = "${aws_vpc.telepathy-vpc.id}"
   cidr_block        = "${var.subnet-cidr}"
-  availability_zone = "ap-south-1"
+  availability_zone = "ap-south-1a"
   tags = {
-    name = "telepathy-subnet-1"
+    Name = "telepathy-subnet-1"
   }
 }
 
@@ -29,7 +29,7 @@ resource "aws_route_table" "telepathy-rt" {
     gateway_id = "${aws_internet_gateway.telepathy-igw.id}"
   }
   tags = {
-    name = "telepathy-rt"
+    Name = "telepathy-rt"
   }
 }
 resource "aws_route_table_association" "a" {
