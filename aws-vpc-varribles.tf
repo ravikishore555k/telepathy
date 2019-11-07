@@ -11,6 +11,6 @@ variable "subnet-cidr" {
 variable "route-block" {
   default = "0.0.0.0/0"
 }
-variable "security-groupid" {
-  default = "sg-04d8b0915426482ed"
-  }
+#variable "security-groupid" {
+ # default = "sg-04d8b0915426482ed"
+ # }
