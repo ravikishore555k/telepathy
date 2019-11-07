@@ -8,6 +8,21 @@ try {
     }
   }
 
+  //...............approval stage
+    stage('Input') {
+            steps {
+                input('Do you want to proceed?')
+            }
+        }
+
+        stage('If Proceed is clicked') {
+            steps {
+                print('hello')
+            }
+        }
+  
+  
+  //ended approval stage
   // Run terraform init
   stage('init') {
     node {
@@ -88,16 +103,7 @@ try {
     }
     //........ input
     
-    stage ('Deploy To Prod'){
-  input{
-    message "Do you want to proceed for production deployment?"
-  }
-    steps {
-                //sh 'echo "Deploy into Prod"'
-
-              }
-        }
-
+      
     
     //...........end
     
