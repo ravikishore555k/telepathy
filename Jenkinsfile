@@ -63,8 +63,8 @@ try {
         ]]) {
           ansiColor('xterm') {
             //sh 'sudo /var/lib/jenkins/workspace/terraform-2_master'
-            //sh 'terraform apply -auto-approve'
-            sh 'terraform destroy -auto-approve'
+            sh 'terraform apply -auto-approve'
+            //sh 'terraform destroy -auto-approve'
           }
         }
       }
