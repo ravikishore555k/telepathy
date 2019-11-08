@@ -16,6 +16,7 @@ resource "aws_subnet" "telepathy-subnet" {
   vpc_id            = "${aws_vpc.telepathy-vpc.id}"
   cidr_block        = "${var.subnet-cidr}"
   availability_zone = "ap-south-1a"
+  map_public_ip_on_launch = "yes"
   tags = {
     Name = "telepathy-subnet-1"
   }
