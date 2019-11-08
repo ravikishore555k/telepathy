@@ -144,7 +144,7 @@ try {
    
    def tomcatIp = '${PRIVATEIP}'
    def tomcatUser = 'ubuntu'
-   def stopTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/shutdown.sh"
+   def stopTomcat = "ssh ${tomcatUser}@${tomcatIp}"
    //def startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
    //def copyWar = "scp -o StrictHostKeyChecking=no target/myweb.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
    //stage('SCM Checkout'){
@@ -162,6 +162,7 @@ try {
 	   
        sshagent(['tomcat-dev']) {
 			sh "${stopTomcat}"
+	                sh 'pwd'
 			//sh "${copyWar}"
 			//sh "${startTomcat}"
 	      }
