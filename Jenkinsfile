@@ -128,7 +128,7 @@ try {
           //credentialsId: credentialsId,
          // accessKeyVariable: 'AWS_ACCESS_KEY_ID',
           //secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-        ]]) {
+        //]]) {
           ansiColor('xterm') {
             //sh 'sudo /var/lib/jenkins/workspace/terraform-2_master'
             sh 'PRIVATEIP=$(terraform output instance_ip_addr)'
@@ -141,7 +141,7 @@ try {
           }
         }
       }
-    }
+    
     
    
     //...........end
