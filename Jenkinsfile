@@ -104,6 +104,7 @@ try {
           ansiColor('xterm') {
             //sh 'sudo /var/lib/jenkins/workspace/terraform-2_master'
             sh 'terraform output instance_ip_addr'
+            sh 'terraform output instance_ip-addr -out=/var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/ip.xml'
           }
         }
       }
