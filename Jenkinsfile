@@ -140,9 +140,9 @@ try {
     //...........end
     //start
    node{
-   sh 'PRIVATEIP=$(terraform output instance_ip_addr)'
+   sh 'PUBLICIP=$(terraform output instance_ip_addr)'
    
-   def tomcatIp = '${PRIVATEIP}'
+   def tomcatIp = '${PUBLICIP}'
    def tomcatUser = 'ubuntu'
    def stopTomcat = "ssh ${tomcatUser}@${tomcatIp}"
    //def startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
