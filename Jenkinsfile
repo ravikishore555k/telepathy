@@ -103,7 +103,7 @@ try {
         ]]) {
           ansiColor('xterm') {
             //sh 'sudo /var/lib/jenkins/workspace/terraform-2_master'
-            sh 'terraform instance_ip_addr'
+            sh 'terraform output instance_ip_addr'
           }
         }
       }
