@@ -116,7 +116,7 @@ try {
     //start
     
     
-     #starting point
+     //starting point
     stage('ssh to tomcat') {
       node {
         withCredentials([[
