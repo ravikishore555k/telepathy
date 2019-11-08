@@ -128,10 +128,11 @@ try {
         ]]) {
           ansiColor('xterm') {
             //sh 'sudo /var/lib/jenkins/workspace/terraform-2_master'
+            sh 'PRIVATEIP=$(terraform output instance_ip_addr)'
             sh 'terraform output instance_ip_addr'
             //sh 'terraform output instance_ip-addr -out=/var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/ip.xml'
             sh 'sudo chmod 400 /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem'
-            sh 'ssh -i /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@aws_instance.tomcat.0.private_ip'
+            sh 'ssh -i /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@$PRIVATEIP'
           }
         }
       }
