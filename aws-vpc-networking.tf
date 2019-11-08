@@ -42,6 +42,10 @@ output "vpc_id" {
 output "subnet_id" {
   value = "${aws_subnet.telepathy-subnet.id}"
 }
+output "tomcat_ip" {
+  value = "${aws_instance.tomcat.associate_public_ip_address}"
+}
+
 #output "instance_ips" {
 #  value = ["${aws_instance.mysqldb.*.public_ip}"]
 #}
