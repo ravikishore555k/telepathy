@@ -117,7 +117,7 @@ try {
     //start
     stage ("wait_prior_starting_smoke_testing") {
        echo 'Waiting 5 minutes for deployment to complete prior starting smoke testing'
-         sleep 720 // seconds
+         sleep 120 // seconds
       }
     
      //starting point
@@ -135,7 +135,8 @@ try {
             sh 'terraform output instance_ip_addr'
             //sh 'terraform output instance_ip-addr -out=/var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/ip.xml'
             sh 'sudo chmod 400 /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem'
-            sh 'ssh -i /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@$PRIVATEIP'
+            ssh -i /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@$PRIVATEIP
+            
             sh 'whoami'
             sh 'ifconfig | grep broadcast'
           }
