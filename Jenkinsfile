@@ -121,23 +121,55 @@ try {
       }
     
      //starting point
-    stage('ssh to tomcat') {
-      node {
-          ansiColor('xterm') 
-            sh 'PRIVATEIP=$(terraform output instance_ip_addr)'
-            sh 'terraform output instance_ip_addr'
-            //sh 'terraform output instance_ip-addr -out=/var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/ip.xml'
-            sh 'sudo chmod 400 /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem'
-            ssh -i /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@$'PRIVATEIP'
-            sh 'whoami'
-            sh 'ifconfig | grep broadcast'
-          }
-        }
-      }
+    //stage('ssh to tomcat') {
+     // node {
+        //  ansiColor('xterm') 
+        //    sh 'PRIVATEIP=$(terraform output instance_ip_addr)'
+         //   sh 'terraform output instance_ip_addr'
+         /   //sh 'terraform output instance_ip-addr -out=/var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/ip.xml'
+          //  sh 'sudo chmod 400 /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem'
+          //  ssh -i /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@$'PRIVATEIP'
+          //  sh 'whoami'
+          //  sh 'ifconfig | grep broadcast'
+         // }
+       // }
+      //}
     
     
    
     //...........end
+    //start
+   node{
+   sh 'PRIVATEIP=$(terraform output instance_ip_addr)'
+   
+   def tomcatIp = '${PRIVATEIP}'
+   def tomcatUser = 'ubuntu'
+   def stopTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/shutdown.sh"
+   //def startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
+   //def copyWar = "scp -o StrictHostKeyChecking=no target/myweb.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
+   //stage('SCM Checkout'){
+     //   git branch: 'master', 
+	     //   credentialsId: 'javahometech',
+	     //   url: 'https://github.com/javahometech/myweb'
+   //}
+   //stage('Maven Build'){
+    //    def mvnHome = tool name: 'maven3', type: 'maven'
+		//sh "${mvnHome}/bin/mvn clean package"
+   //}
+   
+   stage('Deploy Dev'){
+	  // sh 'mv target/myweb*.war target/myweb.war' 
+	   
+       sshagent(['tomcat-dev']) {
+			sh "${stopTomcat}"
+			//sh "${copyWar}"
+			//sh "${startTomcat}"
+	      }
+      }
+    }  
+           
+           
+    //end
     
   }
   currentBuild.result = 'SUCCESS'
