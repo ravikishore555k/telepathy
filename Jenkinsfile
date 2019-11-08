@@ -93,7 +93,26 @@ try {
     }
     //........ input
     
-      
+    stage('ip') {
+      node {
+        withCredentials([[
+          $class: 'AmazonWebServicesCredentialsBinding',
+          credentialsId: credentialsId,
+          accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        ]]) {
+          ansiColor('xterm') {
+            //sh 'sudo /var/lib/jenkins/workspace/terraform-2_master'
+            sh 'terraform instance_ip_addr'
+          }
+        }
+      }
+    }
+    
+    
+    
+    
+    //output "instance_ip_addr"
     
     //...........end
     
