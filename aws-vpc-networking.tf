@@ -44,7 +44,7 @@ output "subnet_id" {
 }
 
 output "instance_ips" {
-  value = ["${aws_instance.tomcat.*.public_ip}"]
+  value = ["${aws_instance.tomcat.*.private_ip}"]
 }
 #output "instance_ips" {
 #  value = ["${aws_instance.mysqldb.*.public_ip}"]
