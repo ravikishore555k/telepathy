@@ -9,15 +9,7 @@ try {
   }
 
   //...............approval stage
-   stage('build') {
-        steps {
-            script {
-              timeout(time: 10, unit: 'MINUTES') {
-                input(id: "Deploy Gate", message: "Deploy ?", ok: 'Deploy')
-              }
-            }
-        }
-    }
+   
   
   
   //ended approval stage
