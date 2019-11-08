@@ -37,6 +37,7 @@ try {
       }
     }
   }
+  
 
   // Run terraform plan
   stage('plan') {
