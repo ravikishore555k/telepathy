@@ -143,12 +143,9 @@ stage('ssh to tomcat') {
    node{
    sh 'PUBLICIP=$(terraform output instance_public_ip_addr)'
    sh 'echo $PUBLICIP'
-   
-   //def tomcatIp = '$(sh "$terraform output instance_public_ip_addr")'
+      //def tomcatIp = '$(sh "$terraform output instance_public_ip_addr")'
    //def tomcatUser = 'ubuntu'
-   //def tomcatssh = "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${PUBLICIP}"
-	   /
-       
+   //def tomcatssh = "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${PUBLICIP}"       
 	   sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@$PUBLICIP"
 	   sh 'which java'
    //def startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
