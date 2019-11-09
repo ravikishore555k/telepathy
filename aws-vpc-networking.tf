@@ -44,7 +44,7 @@ output "subnet_id" {
   value = "${aws_subnet.telepathy-subnet.id}"
 }
 
-output "instance_pruvate_ip" {
+output "instance_private_ip" {
   value = ["${aws_instance.tomcat.*.private_ip}"]
 }
 
@@ -55,6 +55,11 @@ output "instance_public_ips" {
 output "instance_ip_addr" {
   value = aws_instance.tomcat.0.private_ip
 }
+
+output "instance_public_ip_addr" {
+  value = aws_instance.tomcat.0.public_ip
+}
+
 #output "instance_ips" {
 #  value = ["${aws_instance.mysqldb.*.public_ip}"]
 #}
