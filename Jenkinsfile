@@ -146,6 +146,8 @@ stage('ssh to tomcat') {
    def tomcatIp = '${PUBLICIP}'
    def tomcatUser = 'ubuntu'
    def tomcatssh = "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${tomcatIp}"
+	   
+   sh 'ssh -i "telepathy-key.pem" -o StrictHostKeyChecking=no ubuntu@tomcatIp'
    //def startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
    //def copyWar = "scp -o StrictHostKeyChecking=no target/myweb.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
    //stage('SCM Checkout'){
@@ -158,18 +160,18 @@ stage('ssh to tomcat') {
 		//sh "${mvnHome}/bin/mvn clean package"
    //}
    
-   stage('Deploy Dev'){
+   //stage('Deploy Dev'){
 	  // sh 'mv target/myweb*.war target/myweb.war' 
 	   
-       sshagent(['tomcat-dev']) {
-			sh "${tomcatssh}"
-	                sh 'pwd'
+     //  sshagent(['tomcat-dev']) {
+	//		sh "${tomcatssh}"
+	  //              sh 'pwd'
 			//sh "${copyWar}"
 			//sh "${startTomcat}"
 	      }
       }
-    }  
-}      
+      
+   
            
     //end
     
