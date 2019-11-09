@@ -143,9 +143,9 @@ stage('ssh to ec2 machine') {
    node{
    sh 'PUBLICIP=$(terraform output instance_public_ip_addr)'
    //sh 'sudo chmod 777 /etc/hosts'
-   sh 'echo "$PUBLICIP" telepathy22.com telepathy22 >> "/etc/hosts"'
+   sh 'echo $PUBLICIP telepathy.com telepathy >> /etc/hosts'
    sh 'pwd'
-   sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy22"
+   sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy"
    sh 'dig +short myip.opendns.com @resolver1.opendns.com'
    //sh 'echo $PUBLICIP'
    //def tomcatIp = '$PUBLICIP'
