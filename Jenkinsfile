@@ -117,7 +117,7 @@ try {
     //start
     stage ("wait_prior_starting_smoke_testing") {
        echo 'Waiting 5 minutes for deployment to complete prior starting smoke testing'
-         sleep 120 // seconds
+         sleep 10 // seconds
       }
     
      //starting point
@@ -139,12 +139,13 @@ try {
    
     //...........end
     //start
+stage('ssh to tomcat') {	  
    node{
-   sh 'PUBLICIP=$(terraform output instance_ip_addr)'
+   sh 'PUBLICIP=$(terraform output instance_public_ip_addr)'
    
    def tomcatIp = '${PUBLICIP}'
    def tomcatUser = 'ubuntu'
-   def stopTomcat = "ssh ${tomcatUser}@${tomcatIp}"
+   def tomcatssh = "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${tomcatIp}"
    //def startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
    //def copyWar = "scp -o StrictHostKeyChecking=no target/myweb.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
    //stage('SCM Checkout'){
@@ -161,14 +162,14 @@ try {
 	  // sh 'mv target/myweb*.war target/myweb.war' 
 	   
        sshagent(['tomcat-dev']) {
-			sh "${stopTomcat}"
+			sh "${tomcatssh}"
 	                sh 'pwd'
 			//sh "${copyWar}"
 			//sh "${startTomcat}"
 	      }
       }
     }  
-           
+}      
            
     //end
     
