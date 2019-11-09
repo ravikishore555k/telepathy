@@ -141,8 +141,9 @@ try {
     //start
 stage('ssh to ec2 machine') {	  
    node{
+	   sh 'sudo chmod 600 /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem'
 	   sh 'echo $(whoami)'
-   sh 'PUBLICIP=$(terraform output instance_public_ip_addr)'
+   	   sh 'PUBLICIP=$(terraform output instance_public_ip_addr)'
 	//sh 'terraform output instance_public_ip_addr > ipaddress.text'
 	   sh "(terraform output instance_public_ip_addr; echo telepathy.com; echo telepathy) |tr '\n' '\t' > xyz.text"
            sh 'cat xyz.text >> /etc/hosts'
@@ -186,7 +187,15 @@ stage('ssh to ec2 machine') {
    
            
     //end
-    
+    // start
+
+	  stage('deleting host entry on hosts file on jenkins server') {	  
+   node{
+	   sh 'sudo sed -i '$d' /etc/hosts'
+   }
+	  }
+	  
+	  //end
   }
   currentBuild.result = 'SUCCESS'
 }
