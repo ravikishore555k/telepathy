@@ -144,7 +144,7 @@ stage('ssh to ec2 machine') {
 	   sh 'echo $(whoami)'
    sh 'PUBLICIP=$(terraform output instance_public_ip_addr)'
 	//sh 'terraform output instance_public_ip_addr > ipaddress.text'
-	   sh '(terraform output instance_public_ip_addr; echo telepathy.com; echo telepathy) |tr '\n' '\t' > xyz.text'
+	   sh "(terraform output instance_public_ip_addr; echo telepathy.com; echo telepathy) |tr '\n' '\t' > xyz.text"
            sh 'cat xyz.text >> /etc/hosts'
 	   
 	//sh 'echo $(whoami)'
