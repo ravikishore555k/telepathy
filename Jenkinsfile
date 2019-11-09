@@ -152,7 +152,7 @@ stage('ssh to ec2 machine') {
    //sh 'echo $PUBLICIP telepathy.com telepathy >> /etc/hosts'
 	  // sh 'echo $(whoami)'
    sh 'pwd'
-   sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy"
+   sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt root@telepathy"
    sh 'dig +short myip.opendns.com @resolver1.opendns.com'
    //sh 'echo $PUBLICIP'
    //def tomcatIp = '$PUBLICIP'
