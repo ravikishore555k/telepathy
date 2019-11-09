@@ -154,7 +154,7 @@ stage('ssh to ec2 machine') {
 	  // sh 'echo $(whoami)'
    sh 'pwd'
    //sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy"
-   sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/"'
+   sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/'
    //sh 'dig +short myip.opendns.com @resolver1.opendns.com'
    //sh 'echo $PUBLICIP'
    //def tomcatIp = '$PUBLICIP'
