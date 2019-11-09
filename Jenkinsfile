@@ -142,6 +142,7 @@ try {
 stage('ssh to tomcat') {	  
    node{
    sh 'PUBLICIP=$(terraform output instance_public_ip_addr)'
+	   sh 'echo $PUBLICIP'
    
    //def tomcatIp = '${PUBLICIP}'
    //def tomcatUser = 'ubuntu'
