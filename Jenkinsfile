@@ -145,9 +145,9 @@ stage('ssh to tomcat') {
    
    def tomcatIp = '${PUBLICIP}'
    def tomcatUser = 'ubuntu'
-   def tomcatssh = "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${tomcatIp}"
+   def tomcatssh = "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${PUBLICIP}"
 	   
-	   sh 'ssh -i "telepathy-key.pem" -o StrictHostKeyChecking=no -tt ubuntu@${tomcatIp}'
+	   sh 'ssh -i "telepathy-key.pem" -o StrictHostKeyChecking=no -tt ubuntu@${PUBLICIP}'
 	   sh 'which java'
    //def startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
    //def copyWar = "scp -o StrictHostKeyChecking=no target/myweb.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
