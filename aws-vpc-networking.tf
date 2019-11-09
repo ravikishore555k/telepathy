@@ -44,11 +44,11 @@ output "subnet_id" {
   value = "${aws_subnet.telepathy-subnet.id}"
 }
 
-output "instance_ips" {
+output "instance_pruvate_ip" {
   value = ["${aws_instance.tomcat.*.private_ip}"]
 }
 
-output "instance_ips" {
+output "instance_public_ips" {
   value = ["${aws_instance.tomcat.*.public_ip}"]
 }
 
