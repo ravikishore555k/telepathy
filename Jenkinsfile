@@ -117,7 +117,7 @@ try {
     //start
     stage ("wait_prior_starting_smoke_testing") {
        echo 'Waiting 5 minutes for deployment to complete prior starting smoke testing'
-         sleep 120 // seconds
+         sleep 10 // seconds
       }
     
      //starting point
@@ -139,15 +139,20 @@ try {
    
     //...........end
     //start
-stage('ssh to tomcat') {	  
+stage('ssh to ec2 machine') {	  
    node{
    sh 'PUBLICIP=$(terraform output instance_public_ip_addr)'
+   sh 'sudo chmod 777 /etc/hosts'
+   sh 'sudo echo "$PUBLICIP" telepathy.com telepathy >> "/etc/hosts"'
+   sh 'pwd'
+   sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy"
+   sh 'dig +short myip.opendns.com @resolver1.opendns.com'
    //sh 'echo $PUBLICIP'
    //def tomcatIp = '$PUBLICIP'
    //def tomcatUser = 'ubuntu'
    //def tomcatssh = "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${PUBLICIP}"       
-	   sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@${instance_public_ip_addr}"
-	   sh 'which java'
+	  // sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@${instance_public_ip_addr}"
+	   //sh 'which java'
    //def startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
    //def copyWar = "scp -o StrictHostKeyChecking=no target/myweb.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
    //stage('SCM Checkout'){
