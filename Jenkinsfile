@@ -153,8 +153,9 @@ stage('ssh to ec2 machine') {
    //sh 'echo $PUBLICIP telepathy.com telepathy >> /etc/hosts'
 	  // sh 'echo $(whoami)'
    sh 'pwd'
-   sh 'scp -o StrictHostKeyChecking=no -i telepathy-key.pem /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/new1.xml'
-	   
+	 sh "ssh ubuntu@$telepathy /opt/tomcat8/bin/shutdown.sh"
+	 sh 'scp -o StrictHostKeyChecking=no -i telepathy-key.pem /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/new1.xml'
+	 sh "ssh ubuntu@$telepathy /opt/tomcat8/bin/startup.sh"
 	   //sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy"
    //sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/'
    //sh 'dig +short myip.opendns.com @resolver1.opendns.com'
@@ -194,8 +195,7 @@ stage('ssh to ec2 machine') {
 
 	  stage('deleting host entry on hosts file on jenkins server') {	  
    node{
-	   sh 'sudo su'
-	   sh 'sed -i '$d' /etc/hosts'
+	   sh 'sudo sed -i '$d' /etc/hosts'
    }
 	  }
 	  
