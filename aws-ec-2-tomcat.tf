@@ -12,7 +12,7 @@ resource "aws_instance" "tomcat" {
   vpc_security_group_ids = ["${aws_security_group.telepathy-sg.id}"]
   #"sg-04d8b0915426482ed"
   key_name                    = "telepathy-key"
-  user_data                   = "${file("install-tomcat.sh")}"
+  #user_data                   = "${file("install-tomcat.sh")}"
   tags = {
     #    name = "mysql-db-${count.index + 1}"
     name = "tomcat-1"
