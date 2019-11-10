@@ -115,9 +115,9 @@ try {
     
     
     //start
-    stage ("wait_prior_starting_smoke_testing") {
-       echo 'Waiting 5 minutes for deployment to complete prior starting smoke testing'
-         sleep 500// seconds
+    stage ("wait for ubuntu status check") {
+       echo 'Waiting 4 minutes for deployment to complete prior starting smoke testing'
+         sleep 240// seconds
       }
     
      //starting point
@@ -153,9 +153,9 @@ stage('ssh to ec2 machine') {
    //sh 'echo $PUBLICIP telepathy.com telepathy >> /etc/hosts'
 	  // sh 'echo $(whoami)'
    sh 'pwd'
-	 sh "ssh ubuntu@$telepathy /opt/tomcat8/bin/shutdown.sh"
+	 sh "ssh ubuntu@$telepathy /opt/tomcat/bin/shutdown.sh"
 	 sh 'scp -o StrictHostKeyChecking=no -i telepathy-key.pem /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/new1.xml'
-	 sh "ssh ubuntu@$telepathy /opt/tomcat8/bin/startup.sh"
+	 sh "ssh ubuntu@$telepathy /opt/tomcat/bin/startup.sh"
 	   //sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy"
    //sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/'
    //sh 'dig +short myip.opendns.com @resolver1.opendns.com'
