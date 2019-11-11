@@ -155,7 +155,7 @@ stage('ssh to ec2 machine') {
 	  // sh 'echo $(whoami)'
          sh 'pwd' 
 	 sh "ssh -o StrictHostKeyChecking=no -i telepathy-key.pem ubuntu@telepathy $tomcatstop"
-	 sh 'scp -o StrictHostKeyChecking=no -i telepathy-key.pem /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master@2/telepathy-key.pem tomcat@telepathy:/opt/new1.xml'
+	 sh 'scp -o StrictHostKeyChecking=no -i telepathy-key.pem /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master@2/telepathy-key.pem ubuntu@telepathy:/opt/new1.xml'
 	 sh "ssh -o StrictHostKeyChecking=no -i telepathy-key.pem ubuntu@telepathy $tomcatstart"
 	   //sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy"
    //sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/'
