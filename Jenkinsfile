@@ -205,6 +205,11 @@ stage('ssh to ec2 machine') {
 	  }
 	  
 	  //end
+	  //start
+	  stage ("wait for testing:1hr") {
+       echo 'Waiting 4 minutes for deployment to complete prior starting smoke testing'
+         sleep 10// seconds
+	  //end
   }
   currentBuild.result = 'SUCCESS'
 }
