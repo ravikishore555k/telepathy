@@ -115,9 +115,9 @@ try {
     
     
     //start
-    stage ("wait for ubuntu status check") {
+    stage ("wait for ubuntu status check ") {
        echo 'Waiting 4 minutes for deployment to complete prior starting smoke testing'
-         sleep 240// seconds
+         sleep 40// seconds
       }
     
      //starting point
