@@ -196,9 +196,11 @@ stage('ssh to ec2 machine') {
 
 	  stage('deleting host entry on hosts file on jenkins server') {	  
    node{
-	   sh 'sed -i '$d' /var/lib/jenkins/.ssh/known_hosts'
+	   def removeknownhostentry = 'sed -i '$d' /var/lib/jenkins/.ssh/known_hosts'
+	   def removehostentry = 'sudo sed -i '$d' /etc/hosts'
+	   sh '$removeknownhostentry'
 	   sh 'exit'
-	   sh 'sudo sed -i '$d' /etc/hosts'
+	   sh '$removehostentry'
    }
 	  }
 	  
