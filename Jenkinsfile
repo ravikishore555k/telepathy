@@ -153,7 +153,7 @@ stage('ssh to ec2 machine') {
    //sh 'echo $PUBLICIP telepathy.com telepathy >> /etc/hosts'
 	  // sh 'echo $(whoami)'
    sh 'pwd'
-	 sh "ssh -o StrictHostKeyChecking=no -i telepathy-key.pem ubuntu@telepathy /opt/tomcat/bin/shutdown.sh"
+	 sh "ssh -o StrictHostKeyChecking=no -i telepathy-key.pem ubuntu@telepathy /bin/systemctl start tomcat"
 	 sh 'scp -o StrictHostKeyChecking=no -i telepathy-key.pem /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master@2/telepathy-key.pem ubuntu@telepathy:/opt/new1.xml'
 	 sh "ssh -o StrictHostKeyChecking=no -i telepathy-key.pem ubuntu@telepathy /opt/tomcat/bin/startup.sh"
 	   //sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy"
