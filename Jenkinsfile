@@ -141,7 +141,7 @@ try {
     //start
 stage('ssh to ec2 machine') {	  
    node{
-	   sh 'sudo chmod 600 /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem'
+	   sh 'sudo chmod 600 /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master@2/telepathy-key.pem'
 	   sh 'echo $(whoami)'
    	   sh 'PUBLICIP=$(terraform output instance_public_ip_addr)'
 	   sh 'terraform output instance_public_ip_addr > ipaddress.text'
@@ -154,7 +154,7 @@ stage('ssh to ec2 machine') {
 	  // sh 'echo $(whoami)'
    sh 'pwd'
 	 sh "ssh ubuntu@$telepathy /opt/tomcat/bin/shutdown.sh"
-	 sh 'scp -o StrictHostKeyChecking=no -i telepathy-key.pem /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/new1.xml'
+	 sh 'scp -o StrictHostKeyChecking=no -i telepathy-key.pem /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master@2/telepathy-key.pem ubuntu@telepathy:/opt/new1.xml'
 	 sh "ssh ubuntu@$telepathy /opt/tomcat/bin/startup.sh"
 	   //sh "ssh -i telepathy-key.pem -o StrictHostKeyChecking=no -tt ubuntu@telepathy"
    //sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/telepathy-key.pem ubuntu@telepathy:/opt/'
