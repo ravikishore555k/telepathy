@@ -10,7 +10,12 @@ try {
 
   //...............approval stage
    
-  
+  stage('Compile-Package'){
+
+      def mvnHome =  tool name: 'Maven-3', type: 'maven'   
+      sh "${mvnHome}/bin/mvn clean package -DskipTests=true"
+   }
+	
   
   //ended approval stage
   // Run terraform init
@@ -211,6 +216,25 @@ stage('ssh to ec2 machine') {
          sleep 12// seconds
 	  }
 	  //end
+	  
+	  //START
+	  stage('terrafrom destroy') {
+      node {
+        withCredentials([[
+          $class: 'AmazonWebServicesCredentialsBinding',
+          credentialsId: credentialsId,
+          accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        ]]) {
+          ansiColor('xterm') {
+            //sh 'sudo /var/lib/jenkins/workspace/terraform-2_master'
+            sh 'terraform destroy'
+           // sh 'terraform output instance_ip-addr -out=/var/lib/jenkins/workspace/AWS-INFRA-DEMO_master/ip.xml'
+          }
+        }
+      }
+    }
+	  //END
   }
   currentBuild.result = 'SUCCESS'
 }
