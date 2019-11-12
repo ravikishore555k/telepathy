@@ -208,7 +208,7 @@ stage('ssh to ec2 machine') {
 	  //start
 	  stage ("wait for testing:1hr") {
        echo 'Waiting 4 minutes for deployment to complete prior starting smoke testing'
-         sleep 10// seconds
+         sleep 12// seconds
 	  }
 	  //end
   }
